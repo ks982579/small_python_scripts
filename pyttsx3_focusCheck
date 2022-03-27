@@ -1,0 +1,48 @@
+# https://pypi.org/project/pyttsx3/
+# https://pyttsx3.readthedocs.io/en/latest/
+# https://www.programiz.com/python-programming/datetime/current-time
+
+
+import pyttsx3 as pytalk
+import random, time
+#from datetime import datetime
+
+Target = 8
+Margin = .90
+lines = [
+	"Get back to work!",
+	"Work harder!",
+	"Work faster!",
+	"I want results, not excuses!",
+	"What are you doing?",
+	]
+choices = len(lines)
+Jarvas = pytalk.init()
+voices = Jarvas.getProperty("voices")
+numv = len(voices)
+#print(voices)
+Jarvas.setProperty("rate", 170)
+sleepTime = int(((60*60)/Target)*Margin)
+print(sleepTime)
+count = 0
+rph = (60*60)/sleepTime
+
+print("Every "+str(sleepTime)+" seconds")
+print("which is a rate of {rate:.2f} per hour ".format(rate=rph))
+
+while True:
+   # Below (comment out) randomly changed voices as well. 
+   #Jarvas.setProperty("voice", voices[random.randint(0,numv-1)].id)
+   #print(Jarvas.getProperty("voice"))
+   Jarvas.say(lines[random.randint(0,choices-1)])
+   Jarvas.runAndWait()
+   timeObj = time.localtime()
+   currentTime = time.strftime("%H:%M:%S", timeObj)
+   #time.sleep(120+random.randint(0,60)) #To Randomly Speak
+   print(str(currentTime)+" - "+str(count))
+   count+=1
+   time.sleep(sleepTime)
+   
+# Jarvas has properties you can get with Jarvas.getProperty("rate"), 
+# and set with Jarvas.setProperty("rate", 125)
+# Jarvas has rate, volume, voice, 
