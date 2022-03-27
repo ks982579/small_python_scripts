@@ -1,0 +1,16 @@
+#python3 -m pip install opencv-python
+
+import cv2
+import time
+#import datatime
+
+cap = cv2.VideoCapture(0)
+while True:
+	#the _x catches the other variable shot back, but we don't need
+	_x, frame = cap.read() #get an image from camera
+	cv2.imshow("Camera", frame) # creates window to see video
+	if cv2.waitKey(1) == ord("q"):
+		break # if we hit "q" it'll break
+
+cap.release() #releases the video camera now for other applications to use
+cap.destroyAllWindows() # closes window
