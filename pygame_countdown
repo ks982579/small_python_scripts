@@ -1,0 +1,54 @@
+# There are two Sounds, the "blurp" and "cash register"
+# You will need these is the . directory for program to work. 
+
+import pygame
+import os
+import time
+
+
+#pygame.init() # essentially starts PyGame
+pygame.init()
+pygame.mixer.init()
+
+
+boopFile = "blurp_x.wav"
+cregfile = "cash_register2.wav"
+myBlurp = pygame.mixer.Sound(boopFile)
+myCashReg = pygame.mixer.Sound(cregfile)
+count_x = 0
+
+stringTime = input("Total time (in minutes)?: ")
+
+TotalTimeMin = int(stringTime)
+TotalTimeSec = TotalTimeMin * 60
+
+print(str(TotalTimeMin)+" minutes, starting now!")
+
+while(count_x < TotalTimeMin-1):
+	pygame.mixer.Sound.play(myBlurp)
+	time.sleep(60)
+	count_x += 1
+	print(str(count_x)+" of "+str(TotalTimeMin)+" minutes...")
+
+count_x = 0
+print("60 seconds remaining...")
+
+while(count_x < 5):
+	if count_x == 0:
+		pygame.mixer.Sound.play(myCashReg)
+	else:	
+		pygame.mixer.Sound.play(myBlurp)
+	time.sleep(10)
+	count_x += 1
+	print(str(60-count_x*10)+"seconds")
+	
+count_x = 0
+
+while(count_x < 10):
+	if count_x == 0:
+		pygame.mixer.Sound.play(myCashReg)
+	else:	
+		pygame.mixer.Sound.play(myBlurp)
+	time.sleep(1)
+	count_x += 1
+	print(10 - count_x)
